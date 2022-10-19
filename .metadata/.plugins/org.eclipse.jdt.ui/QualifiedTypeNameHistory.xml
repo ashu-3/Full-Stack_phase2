@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.projectdemo.LearnerService"/>
+    <fullyQualifiedTypeName name="com.projectdemo.Subject"/>
+    <fullyQualifiedTypeName name="com.projectdemo.Classes"/>
+    <fullyQualifiedTypeName name="com.projectdemo.Teachers"/>
+    <fullyQualifiedTypeName name="com.projectdemo.Student"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.sql.Types"/>
+</qualifiedTypeNameHistroy>

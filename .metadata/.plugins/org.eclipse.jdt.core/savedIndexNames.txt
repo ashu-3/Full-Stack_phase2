@@ -1,0 +1,5 @@
+INDEX VERSION 1.131+D:\Simplilearn\Full Stack\phase2\projectDemo4\.metadata\.plugins\org.eclipse.jdt.core
+104942581.index
+212355096.index
+2794671211.index
+1865797976.index

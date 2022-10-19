@@ -1,0 +1,316 @@
+package com.projectdemo;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.util.Jdbcutil;
+
+public class LearnerService {
+	Connection con= null;
+	PreparedStatement ps = null;
+	ResultSet rs= null;
+	
+	public int add(Subject subject) {
+		System.out.println("*************START-add()******************");
+		int numberOfRecord=0;
+		try {
+			
+			con= Jdbcutil.getMySqlConnection();
+			  ps = con.prepareStatement("INSERT INTO Subject1 VALUES (?,?)");
+			  ps.setInt(1, subject.getSub_id());
+			  ps.setString(2, subject.getSub_name());
+	
+			  numberOfRecord=ps.executeUpdate();
+			  
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			Jdbcutil.cleanup(rs, ps, con);
+		}
+		
+		System.out.println("*************END-add()******************");
+		return numberOfRecord;
+	}
+
+	public List<Subject> get() {
+		System.out.println("*************START-get()******************");
+		Subject subject = null;
+		  List<Subject> subjectList = new ArrayList<Subject>();
+		try {
+			con= Jdbcutil.getMySqlConnection();
+			  ps = con.prepareStatement("SELECT * FROM Subject1");
+			  //ps.setInt(1, getSub_id());
+			  rs=ps.executeQuery();
+			  while(rs.next()) {
+				  subject = new Subject();
+				  
+				  subject.setSub_id(rs.getInt(1));
+				  subject.setSub_name(rs.getString(2));
+				  subjectList.add(subject);
+			  }
+			  //System.out.println("ok"+subject);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			Jdbcutil.cleanup(rs, ps, con);	
+		}
+		System.out.println("*************END-get()******************");
+		
+		return subjectList;
+	}
+	
+	//Classes 
+	
+	public int addClasses(Classes classes) {
+		System.out.println("*************START-addClass()******************");
+		int numberOfRecord=0;
+		try {
+			
+			con= Jdbcutil.getMySqlConnection();
+			  ps = con.prepareStatement("INSERT INTO Class1 VALUES (?,?)");
+			  ps.setInt(1, classes.getClass_id());
+			  ps.setString(2, classes.getClass_name());
+	
+			  numberOfRecord=ps.executeUpdate();
+			  
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			Jdbcutil.cleanup(rs, ps, con);
+		}
+		
+		System.out.println("*************END-addClass()******************");
+		return numberOfRecord;
+	}
+	
+	public List<Classes> getClasses() {
+		System.out.println("*************START-get()******************");
+		Classes class1 = null;
+		List<Classes> classesList = new ArrayList<Classes>();
+		try {
+			con= Jdbcutil.getMySqlConnection();
+			  ps = con.prepareStatement("SELECT * FROM Class1");
+			  rs=ps.executeQuery();
+			  while(rs.next()) {
+				  class1 = new Classes();
+				  
+				  class1.setClass_id(rs.getInt(1));
+				  class1.setClass_name(rs.getString(2));
+				  classesList.add(class1);
+			  }
+			 // System.out.println("ok"+class1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			Jdbcutil.cleanup(rs, ps, con);	
+		}
+		System.out.println("*************END-get()******************");
+		
+		return classesList;
+	}
+	
+	//Teachers
+	
+	public int addTeachers(Teachers teachers) {
+		System.out.println("*************START-addTeacher()******************");
+		int numberOfRecord=0;
+		try {
+			
+			con= Jdbcutil.getMySqlConnection();
+			  ps = con.prepareStatement("INSERT INTO Teacher1 VALUES (?,?)");
+			  ps.setInt(1, teachers.getTeacher_id());
+			  ps.setString(2, teachers.getTeacher_name());
+	
+			  numberOfRecord=ps.executeUpdate();
+			  
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			Jdbcutil.cleanup(rs, ps, con);
+		}
+		
+		System.out.println("*************END-addTeacher()******************");
+		return numberOfRecord;
+	}
+	
+	public List<Teachers> getTeachers() {
+		System.out.println("*************START-getTeachers()******************");
+		Teachers teacher = null;
+		List<Teachers> teacherList = new ArrayList<Teachers>();
+		try {
+			con= Jdbcutil.getMySqlConnection();
+			  ps = con.prepareStatement("SELECT * FROM Teacher1");
+			  rs=ps.executeQuery();
+			  while(rs.next()) {
+				  teacher = new Teachers();
+				  teacher.setTeacher_id(rs.getInt(1));
+				  teacher.setTeacher_name(rs.getString(2));
+				  teacherList.add(teacher);
+			  }
+			 // System.out.println("ok"+teacher);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			Jdbcutil.cleanup(rs, ps, con);	
+		}
+		System.out.println("*************END-getTeachers()******************");
+		
+		return teacherList;
+	}
+	
+	//Student
+	
+		public int addStudents(Student student) {
+			System.out.println("*************START-addTeacher()******************");
+			int numberOfRecord=0;
+			try {
+				
+				con= Jdbcutil.getMySqlConnection();
+				  ps = con.prepareStatement("INSERT INTO Student1 VALUES (?,?)");
+				  ps.setInt(1, student.getStudent_id());
+				  ps.setString(2, student.getStudent_name());
+		
+				  numberOfRecord=ps.executeUpdate();
+				  
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				Jdbcutil.cleanup(rs, ps, con);
+			}
+			
+			System.out.println("*************END-addTeacher()******************");
+			return numberOfRecord;
+		}
+		
+		public List<Student> getStudents() {
+			
+			List<Student> studentList = new ArrayList<Student>();
+			System.out.println("*************START-getStudent()******************");
+			Student student = null;
+			try {
+				con= Jdbcutil.getMySqlConnection();
+				  ps = con.prepareStatement("SELECT * FROM Student1");
+				  rs=ps.executeQuery();
+				  while(rs.next()) {
+					  student = new Student();
+					  student.setStudent_id(rs.getInt(1));
+					  student.setStudent_name(rs.getString(2));
+					  
+					  studentList.add(student);
+					 // System.out.println("ok1"+student);
+				  }
+				 //System.out.println("ok"+studentList);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				Jdbcutil.cleanup(rs, ps, con);	
+			}
+			System.out.println("*************END-getTeachers()******************");
+			
+			return studentList;
+		}
+		
+		public int insertFinalRecords( ) {
+			List<Student> student = getStudents();
+			List<Teachers> teacher = getTeachers();
+			List<Classes> classes = getClasses();
+			List<Subject> subject = get();
+			int i=1;
+			int numberOfRecord=0;
+			for(Student st:student) {
+				st.getStudent_id();
+				st.getStudent_name();
+				System.out.println("\n"+st.getStudent_id());
+				System.out.println(st.getStudent_name());
+		
+				try {
+					con= Jdbcutil.getMySqlConnection();
+					ps = con.prepareStatement("INSERT INTO Student_Master VALUES (?,?,?,?)");
+					ps.setString(1, i);
+				    ps.setString(2, st.getStudent_name() );
+				    ps.setNull(3, java.sql.Types.VARCHAR);
+				    ps.setNull(4, java.sql.Types.VARCHAR);
+				    ps.setNull(5, java.sql.Types.VARCHAR);
+				    numberOfRecord=ps.executeUpdate();
+				    i++;
+				} 
+				
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+				finally {
+					Jdbcutil.cleanup(rs, ps, con);
+				}
+			}
+			
+			for(Teachers st:teacher) {
+				st.getTeacher_id();
+				st.getTeacher_name();
+				System.out.println("\n"+st.getTeacher_id());
+				System.out.println(st.getTeacher_name());
+				
+				try {
+					con= Jdbcutil.getMySqlConnection();
+					ps = con.prepareStatement("UPDATE Student_Master SET teacher_name=?");
+				    ps.setString(1, st.getTeacher_name() );
+				    numberOfRecord=ps.executeUpdate();
+				} 
+				
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+				finally {
+					Jdbcutil.cleanup(rs, ps, con);
+				}
+			}
+			
+			for(Classes st:classes) {
+				st.getClass_id();
+				st.getClass_name();
+				System.out.println("\n"+st.getClass_id());
+				System.out.println(st.getClass_name());
+				
+				try {
+					con= Jdbcutil.getMySqlConnection();
+					ps = con.prepareStatement("UPDATE Student_Master SET class_name=?");
+				    ps.setString(1, st.getClass_name());
+				    numberOfRecord=ps.executeUpdate();
+				} 
+				
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+				finally {
+					Jdbcutil.cleanup(rs, ps, con);
+				}
+			}
+			
+			for(Subject st:subject) {
+				st.getSub_id();
+				st.getSub_name();
+				System.out.println("\n"+st.getSub_id());
+				System.out.println(st.getSub_name());
+				
+				try {
+					con= Jdbcutil.getMySqlConnection();
+					ps = con.prepareStatement("UPDATE Student_Master SET sub_name=?");
+				    ps.setString(1, st.getSub_name());
+				    numberOfRecord=ps.executeUpdate();
+				} 
+				
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+				finally {
+					Jdbcutil.cleanup(rs, ps, con);
+				}
+			}
+			return numberOfRecord;
+		}
+		
+}
+
+

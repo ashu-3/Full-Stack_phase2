@@ -1,0 +1,117 @@
+package com.client;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.projectdemo.Classes;
+import com.projectdemo.LearnerService;
+import com.projectdemo.Student;
+import com.projectdemo.Subject;
+import com.projectdemo.Teachers;
+
+public class Client {
+
+	public static void main(String[] args) {
+
+		LearnerService service = new LearnerService();
+
+		/* 1. Add Subject */
+
+//		Subject subject = new Subject(104, "DevOps");
+//		int record=service.add(subject);
+//		if(record>0) {
+//			System.out.println("Record Inseerted Successfully");
+//			System.out.println(record);
+//		}else {
+//			System.err.println("Error Occured while inserting the data ");
+//		}
+
+		/* 2.getSubject */
+
+		List<Subject> subject = service.get();
+		for (Subject st : subject) {
+			st.getSub_id();
+			st.getSub_name();
+			System.out.println("\n" + st.getSub_id());
+			System.out.println(st.getSub_name());
+		}
+
+		/* 3.addClass */
+
+//		Classes class1 = new Classes(204, "ClassDD");
+//		int record=service.addClasses(class1);
+//		if(record>0) {
+//			System.out.println("Record Class Inseerted Successfully");
+//			System.out.println(record);
+//		}else {
+//			System.err.println("Error Occured while inserting the data ");
+//		}
+
+		/* 4. get Class */
+
+		List<Classes> classes = service.getClasses();
+		for (Classes st : classes) {
+			st.getClass_id();
+			st.getClass_name();
+			System.out.println("\n" + st.getClass_id());
+			System.out.println(st.getClass_name());
+		}
+//		Classes classes = service.getClasses();
+//		System.out.println("CLASS_ID- "+classes.getClass_id()+"CLASS_NAME- "+classes. getClass_name());
+
+		/* 5. add Teacher */
+
+//		Teachers teacher = new Teachers(304, "XYZ");
+//		int record=service.addTeachers(teacher);
+//		if(record>0) {
+//			System.out.println("Record Class Inseerted Successfully");
+//			System.out.println(record);
+//		}else {
+//			System.err.println("Error Occured while inserting the data ");
+
+//		}
+
+		/* 6. get Teacher */
+
+		List<Teachers> teacher = service.getTeachers();
+		for (Teachers st : teacher) {
+			st.getTeacher_id();
+			st.getTeacher_name();
+			System.out.println("\n" + st.getTeacher_id());
+			System.out.println(st.getTeacher_name());
+		}
+
+		/* 7. add Student */
+
+//		Student student = new Student(404, "Amar");
+//	 	int record=service.addStudents(student);
+//		if(record>0) {
+//			System.out.println("Record Class Inseerted Successfully");
+//			System.out.println(record);
+//		}else {
+//			System.err.println("Error Occured while inserting the data ");
+//		
+//		}
+
+		/* 8. get Teacher */
+
+		List<Student> student = service.getStudents();
+		for (Student st : student) {
+			st.getStudent_id();
+			st.getStudent_name();
+			System.out.println("\n" + st.getStudent_id());
+			System.out.println(st.getStudent_name());
+		}
+		// System.out.println(student.toString());
+		// System.out.println("Student_ID- "+student.getStudent_id()+"Student_NAME-
+		// "+student.getStudent_name());
+
+		// Add All Details to Master List
+
+		int numOfRecord = service.insertFinalRecords();
+		System.out.println("Records Added to master list Successfully" + numOfRecord);
+		// Get All details from Master List
+		//service.getAllRecors();
+	}
+
+}
